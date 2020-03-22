@@ -1,0 +1,24 @@
+version: '3'
+services:
+  schema:
+    container_name: schema
+    image: confluentinc/cp-schema-registry
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=kafka:9092
+      - SCHEMA_REGISTRY_HOST_NAME=schema
+    ports:
+      - "8081:8081"
+  kafka:
+    container_name: kafka
+    image: wurstmeister/kafka
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zk
+      - KAFKA_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+    ports:
+      - "9092:9092"
+  zk:
+    container_name: zk
+    image: zookeeper
+    ports:
+      - "2181:2181"
