@@ -6,6 +6,8 @@ services:
     environment:
       - SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=kafka:9092
       - SCHEMA_REGISTRY_HOST_NAME=schema
+      - SCHEMA_REGISTRY_LISTENERS=http://schema:9081
+      - SCHEMA_REHISTRY_DEBUG=true
     ports:
       - "8081:8081"
   kafka:
